@@ -111,9 +111,11 @@ Route::prefix('Admin')->group(function(){
 Route::prefix('/Eshop')->group(function(){
     Route::prefix('/Home')->group(function(){
         Route::controller(ControllerHome::class)->group(function(){
-            Route::get('/','index');
+            Route::get('/','index')->name('home');
+            Route::get('/login','login')->name('customer');
+            Route::post('/postlogin','postlogin')->name('postcustomer');
             // Route::get('/cart/{id}','addTocart')->name('cart.index');
-             Route::get('/cart/{id}','addTocart')->name('cart.index');
+            Route::get('/cart/{id}','addTocart')->name('cart.index');
             Route::get('/detail','detail')->name('cart.cart');
             Route::get('/update','cart')->name('cart.update');
             Route::get('/delete','cartdelete')->name('cart.delete');

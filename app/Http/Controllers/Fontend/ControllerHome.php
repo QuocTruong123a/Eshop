@@ -71,8 +71,33 @@ class ControllerHome extends Controller
         $orders =  session() ->get('cart');
          return view('Fontend.checkout',compact('orders'));
      }
+     public function login(){
+         return view('Fontend.login.login');
+     }
+     public function postlogin(Request $request)
+     {
+         $remember = $request -> has ('remember_me')?true:false;
+         if(auth() -> attempt([
+             'email'=>$request->email,
+             'password' => $request ->password
+         ],$remember)){
+             return redirect()->to('/Eshop/Home');
+         }
+     }
      public function checkouts(Request $request){
-
+          $orders = order::create([
+              'customer_id' => auth()->id(),
+              'total'=> $request->total
+          ]);
+         $carts =  session() ->get('cart');
+          foreach($carts as $test){
+            $orders ->details() ->create([
+                    'product_id' => $test['id'],
+                    'quantity' => $test['quantity'],
+                    'price' => $test['price']*$test['quantity']
+           ]);
+        }
+        return redirect()->route('home');
            //-- take array insert in on mysql -- \\
 
         // $orders =  session() ->get('cart');
