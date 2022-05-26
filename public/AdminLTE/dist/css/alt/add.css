@@ -1,0 +1,15 @@
+.produtct_image_150 {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.image_path {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+}
+
+.image_detail {
+    margin-top: 20px;
+}
