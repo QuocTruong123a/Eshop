@@ -45,13 +45,7 @@ class MenuController extends Controller
         return view('Backend.menu.edit',compact('menu','optionSelect'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function update(RequestMenu $request, $id)
     {
         $data = $request -> validated();

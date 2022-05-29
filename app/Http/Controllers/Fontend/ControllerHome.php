@@ -7,19 +7,21 @@ use App\Models\product;
 use Illuminate\Http\Request;
 use App\Models\order;
 use App\Models\orderdetail;
+use App\Models\category;
+use App\Models\Slider;
+use App\Models\Menu;
 class ControllerHome extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $orders =  session() ->get('cart');
-        $products = product::Latest()->paginate(5);
-        return view('Fontend.Main',compact('products','orders'));
+
+    public function show(){
+        $sliders = Slider::all();
+        $category = Category::all();
+        $menus = Menu::where('parent_id',0)->get();
+        $categorys = category::where('parent_id',0)->paginate(4);
+        $categoryss = category::where('parent_id',0)->get();
+       return view('Fontend.Home',compact('category','sliders','menus','categorys','categoryss'));
     }
+
     public function addTocart($id,Request $request){
 
         $product = Product::find($id);

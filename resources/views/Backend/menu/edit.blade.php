@@ -12,7 +12,7 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tên Menu</label>
-                    <input value="{{$menu -> name}}" type="" class="form-control" name="name" id="exampleInputEmail1" placeholder="Nhập tên danh mục">
+                    <input value="{{$menu -> name}}" type="" class="form-control  @error ('name') is-invalid @enderror" name="name" id="exampleInputEmail1" placeholder="Nhập tên danh mục">
                   </div>
                   <div class="form-group">
                     <label for="menu">Menu Cha</label>

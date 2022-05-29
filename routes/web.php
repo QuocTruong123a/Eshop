@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Fontend\ControllerCategory;
 use App\Http\Controllers\Fontend\ControllerHome;
 use Illuminate\Support\Facades\Route;
 
@@ -109,12 +110,12 @@ Route::prefix('Admin')->group(function(){
 });
 //fontend//
 Route::prefix('/Eshop')->group(function(){
-    Route::prefix('/Home')->group(function(){
+    Route::prefix('/Main')->group(function(){
         Route::controller(ControllerHome::class)->group(function(){
-            Route::get('/','index')->name('home');
+            Route::get('/Home','show')->name('Main');
             Route::get('/login','login')->name('customer');
             Route::post('/postlogin','postlogin')->name('postcustomer');
-            // Route::get('/cart/{id}','addTocart')->name('cart.index');
+            //Route::get('/cart/{id}','addTocart')->name('cart.index');
             Route::get('/cart/{id}','addTocart')->name('cart.index');
             Route::get('/detail','detail')->name('cart.cart');
             Route::get('/update','cart')->name('cart.update');
@@ -122,5 +123,11 @@ Route::prefix('/Eshop')->group(function(){
             Route::get('/checkout','checkout')->name('cart.checkout');
             Route::post('/check','checkouts')->name('cart.check');
         });
+        Route::controller(ControllerCategory::class)->group(function(){
+            Route::get('category/{slug}/{id}','index')->name('index');
+            Route::get('product/details/{slug}/{id}','productdetail')->name('detail');
+
+        });
     });
+
 });

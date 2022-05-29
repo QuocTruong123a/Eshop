@@ -287,7 +287,7 @@
                                     </td>
 
                                     <td class="shoping__cart__item__close">
-                                      <button   class="btn-primary">  <a class="fa fa-check update" data-id="{{$id}}"> </a></button>
+                                      <button    class="btn-primary">  <a class="fa fa-check update"  data-id="{{$id}}"> </a></button>
                                       <button   class="btn-primary">   <a class="icon_close delete" data-id="{{$id}}"></a></button>
                                     </td>
 
