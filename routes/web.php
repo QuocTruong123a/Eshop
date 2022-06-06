@@ -122,11 +122,12 @@ Route::prefix('/Eshop')->group(function(){
             Route::get('/delete','cartdelete')->name('cart.delete');
             Route::get('/checkout','checkout')->name('cart.checkout');
             Route::post('/check','checkouts')->name('cart.check');
+
         });
         Route::controller(ControllerCategory::class)->group(function(){
             Route::get('category/{slug}/{id}','index')->name('index');
             Route::get('product/details/{slug}/{id}','productdetail')->name('detail');
-
+            Route::post('/order/{id}','order')->name('oder');
         });
     });
 

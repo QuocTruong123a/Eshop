@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\category;
 use App\Components\Recusive;
 use App\Http\Requests\RequestCategory;
+use App\Models\product;
 
 class CategoryController extends Controller
 {
@@ -23,7 +24,7 @@ class CategoryController extends Controller
         return $htmlOption;
       }
     public function list(){
-        $categories = $this->category->paginate(8); 
+        $categories = $this->category->paginate(8);
         return view('Backend.category.list',compact('categories'));
     }
     public function add(){
@@ -48,8 +49,8 @@ class CategoryController extends Controller
     }
     public function delete($id){
         $category = category::where('parent_id',$id)->count();
-
-        if($category == 0 ){
+        $product = Product::where('category_id',$id)->count();
+        if($category == 0 && $product == 0 ){
           $this -> category ->find($id) -> delete();
           return redirect()->route('category.list')->with('success','Xóa thành công') ;
         }

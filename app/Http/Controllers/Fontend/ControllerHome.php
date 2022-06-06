@@ -38,6 +38,7 @@ class ControllerHome extends Controller
             ];
         }
         session()->put('cart',$carts);
+       
 
     }
     public function detail(Request $request){
@@ -53,10 +54,7 @@ class ControllerHome extends Controller
         session() ->put('cart',  $orders);
 
        $orders = session()->get('cart');
-       session() -> order -> create([
-         'customer_id' =>  auth() -> id(),
-         'total' => $orders[$request -> id]['quantity'] *  $orders[$request -> id]['price']
-       ]);
+
 
     }
     public function cartdelete(Request $request){
@@ -128,4 +126,5 @@ class ControllerHome extends Controller
         //       ]);
         //    }
      }
+
 }
